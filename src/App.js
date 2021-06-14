@@ -11,14 +11,16 @@ class App extends React.Component {
   getInfo = async (e) => {
     e.preventDefault();
     let cityName = e.target.cityName.value;
+    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+
+    let serverUrl = process.env.REACT_APP_SERVER;
+    let url = `${serverUrl}/weather?lat=-33.87&lon=151.21&searchQuery=${cityName}`;
 
     try {
-      let data = await axios.get(
-        `https://eu1.locationiq.com/v1/search.php?key=pk.960cd6699f3e6ef057ceb7b7b0aaaaf6&q=${cityName}&format=json&limit=1`
-      );
+      let data = await axios.get(url);
       this.setState({ locData: data.data[0], err: "" });
     } catch {
-      this.setState({ err: "There is an error" });
+      this.setState({ err: "City not found" });
     }
   };
 
@@ -45,13 +47,9 @@ class App extends React.Component {
         ) : (
           this.state.locData && (
             <>
-              <p>Location: {this.state.locData.display_name}</p>
-              <p>Latitude: {this.state.locData.lat}</p>
-              <p>Longitude: {this.state.locData.lon}</p>
-              <img
-                src={`https://maps.locationiq.com/v3/staticmap?key=pk.960cd6699f3e6ef057ceb7b7b0aaaaf6&center=${this.state.locData.lat},${this.state.locData.lon}&size=500x300&zoom=18&format=jpeg`}
-                alt="map"
-              />
+              <p>Temp: {this.state.locData.temp}</p>
+              <p>Weather: {this.state.locData.weather.description}</p>
+              <p>Date: {this.state.locData.datetime}</p>
             </>
           )
         )}
