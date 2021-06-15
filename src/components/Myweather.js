@@ -7,7 +7,7 @@ class Myweather extends React.Component {
     err: "",
   };
 
-  getInfo = async (e) => {
+  getInfo = (e) => {
     e.preventDefault();
     let cityName = e.target.cityName.value;
     cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
@@ -15,12 +15,14 @@ class Myweather extends React.Component {
     let serverUrl = process.env.REACT_APP_SERVER;
     let url = `${serverUrl}/weather?searchQuery=${cityName}`;
 
-    try {
-      let data = await axios.get(url);
-      this.setState({ locData: data.data[0], err: "" });
-    } catch {
-      this.setState({ err: "City not found" });
-    }
+    axios
+      .get(url)
+      .then((data) => {
+        this.setState({ locData: data.data[0], err: "" });
+      })
+      .catch((err) => {
+        this.setState({ err: "City not found" });
+      });
   };
 
   render() {
