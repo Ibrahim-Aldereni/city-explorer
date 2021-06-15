@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Navbar, Container } from "react-bootstrap";
 
 class Myweather extends React.Component {
   state = {
@@ -8,7 +7,7 @@ class Myweather extends React.Component {
     err: "",
   };
 
-  getInfo = async (e) => {
+  getInfo = (e) => {
     e.preventDefault();
     let cityName = e.target.cityName.value;
     cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
@@ -16,26 +15,21 @@ class Myweather extends React.Component {
     let serverUrl = process.env.REACT_APP_SERVER;
     let url = `${serverUrl}/weather?searchQuery=${cityName}`;
 
-    try {
-      let data = await axios.get(url);
-      this.setState({ locData: data.data[0], err: "" });
-    } catch {
-      this.setState({ err: "City not found" });
-    }
+    axios
+      .get(url)
+      .then((data) => {
+        this.setState({ locData: data.data[0], err: "" });
+      })
+      .catch((err) => {
+        this.setState({ err: "City not found" });
+      });
   };
 
   render() {
     return (
-      <div className="App">
-        <Navbar expand="lg" bg="primary" variant="dark" className="mb-4">
-          <Container>
-            <Navbar.Brand style={{ width: "100%", textAlign: "center" }}>
-              🏙️ City Explorer 🗺️
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
-
+      <div>
         <form onSubmit={this.getInfo}>
+          <label>My weather - lab07</label> <br />
           <input type="text" name="cityName" />
           <input type="submit" name="submit" value="Explore!" />
         </form>
