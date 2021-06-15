@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { Navbar, Container } from "react-bootstrap";
 
 class Myweather extends React.Component {
   state = {
@@ -26,16 +25,9 @@ class Myweather extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar expand="lg" bg="primary" variant="dark" className="mb-4">
-          <Container>
-            <Navbar.Brand style={{ width: "100%", textAlign: "center" }}>
-              🏙️ City Explorer 🗺️
-            </Navbar.Brand>
-          </Container>
-        </Navbar>
-
+      <div>
         <form onSubmit={this.getInfo}>
+          <label>My weather - lab07</label> <br />
           <input type="text" name="cityName" />
           <input type="submit" name="submit" value="Explore!" />
         </form>

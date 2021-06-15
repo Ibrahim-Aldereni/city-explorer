@@ -1,9 +1,10 @@
 body {
   background-color: rgb(255, 244, 195);
 }
+
 .App {
-  text-align: center;
-  padding: 10px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .err {
