@@ -12,3 +12,21 @@ body {
   font-weight: bold;
   font-size: 25px;
 }
+
+.movies {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 15em;
+  overflow: auto;
+  height: 70vh;
+}
+
+.movies figure {
+  text-align: center;
+  min-width: 10px;
+  min-height: 10px;
+}
+.movies img {
+  width: 200px;
+  height: 220px;
+}
