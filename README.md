@@ -38,6 +38,8 @@ I am using these technologies in this app:
 
 - 14/6/2021 (4:00pm - 5:00pm) - Application now can connect to my API (city expolerer API) an by enter the name of a location the user can see info of that location.
 
+- 15/6/2021 (3:40pm - 5:00pm) - Application now can connect to my API (city expolrer API) which is now can get info from two APIs (weather and movies)an by enter the name of a location the user can see info of that location and can see the movie name
+
 <!-- Use this area to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an example:
 
 01-01-2001 4:59pm - Application now has a fully-functional express server, with a GET route for the location resource. -->
