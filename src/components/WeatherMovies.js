@@ -21,7 +21,7 @@ class WeatherMovies extends React.Component {
     axios
       .get(weatherUrl)
       .then((data) => {
-        this.setState({ locData: data.data[0], err: "" });
+        this.setState({ locData: data.data, err: "" });
         console.log(this.state.locData);
       })
       .catch((err) => {
@@ -37,7 +37,7 @@ class WeatherMovies extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="weather2">
         <form onSubmit={this.getInfo}>
           <label>Weather and movies API - lab08</label> <br />
           <input type="text" name="cityName" />
@@ -47,12 +47,15 @@ class WeatherMovies extends React.Component {
         {this.state.err ? (
           <p className="err">Error: {this.state.err}</p>
         ) : (
-          this.state.locData && (
-            <>
-              <p>Weather: {this.state.locData.description}</p>
-              <p>Date: {this.state.locData.date}</p>
-            </>
-          )
+          this.state.locData &&
+          this.state.locData.map((item) => {
+            return (
+              <div className="weatherData">
+                <p>Date: {item.date}</p>
+                <p>Weather{item.description}</p>
+              </div>
+            );
+          })
         )}
         {typeof this.state.moviesData == "string" ? (
           <p>{this.state.moviesData}</p>
