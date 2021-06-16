@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Form, Button } from "react-bootstrap";
 
 class Myweather extends React.Component {
   state = {
@@ -28,11 +29,19 @@ class Myweather extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.getInfo}>
-          <label>My weather - lab07</label> <br />
-          <input type="text" name="cityName" />
-          <input type="submit" name="submit" value="Explore!" />
-        </form>
+        <Form onSubmit={this.getInfo}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>My weather - lab07</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter city Name"
+              name="cityName"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
 
         {/* if there is an error it will show me the error only, otherwise if there is data i will show the paragraphes and the image */}
 

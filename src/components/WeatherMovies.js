@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { CardGroup, Card, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
+
+import WeatherDay from "./WeatherDay";
+import Movie from "./Movie";
 
 class WeatherMovies extends React.Component {
   state = {
@@ -38,39 +41,25 @@ class WeatherMovies extends React.Component {
   render() {
     return (
       <div className="weather2">
-        <form onSubmit={this.getInfo}>
-          <label>Weather and movies API - lab08</label> <br />
-          <input type="text" name="cityName" />
-          <input type="submit" name="submit" value="Explore!" />
-        </form>
 
-        {this.state.err ? (
-          <p className="err">Error: {this.state.err}</p>
-        ) : (
-          this.state.locData &&
-          this.state.locData.map((item) => {
-            return (
-              <div className="weatherData">
-                <p>Date: {item.date}</p>
-                <p>Weather{item.description}</p>
-              </div>
-            );
-          })
-        )}
-        {typeof this.state.moviesData == "string" ? (
-          <p>{this.state.moviesData}</p>
-        ) : (
-          <div className="movies">
-            {this.state.moviesData.map((item) => {
-              return (
-                <figure>
-                  <img src={item.poster} alt="movie" />
-                  <figcaption>{item.title}</figcaption>
-                </figure>
-              );
-            })}
-          </div>
-        )}
+        <Form onSubmit={this.getInfo}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Weather and movies API - lab08</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter city Name"
+              name="cityName"
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+
+        <WeatherDay err={this.state.err} locData={this.state.locData} />
+
+        <Movie moviesData={this.state.moviesData} />
+
       </div>
     );
   }
