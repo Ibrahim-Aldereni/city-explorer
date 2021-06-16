@@ -41,6 +41,7 @@ class WeatherMovies extends React.Component {
   render() {
     return (
       <div className="weather2">
+
         <Form onSubmit={this.getInfo}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Weather and movies API - lab08</Form.Label>
@@ -58,6 +59,7 @@ class WeatherMovies extends React.Component {
         <WeatherDay err={this.state.err} locData={this.state.locData} />
 
         <Movie moviesData={this.state.moviesData} />
+
       </div>
     );
   }
