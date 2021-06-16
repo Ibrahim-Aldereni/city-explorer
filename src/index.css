@@ -17,6 +17,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 15em;
+  column-gap: 10px;
   overflow: auto;
   height: 70vh;
 }
@@ -27,6 +28,21 @@ body {
   min-height: 10px;
 }
 .movies img {
-  width: 200px;
-  height: 220px;
+  width: 180px;
+  height: 210px;
+}
+
+.weatherData {
+  width: 150px;
+  height: 100px;
+  background-color: rgba(170, 250, 160, 0.521);
+  display: inline-block;
+  margin: 10px;
+  vertical-align: top;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.weather2 {
+  width: 40%;
 }
