@@ -25,7 +25,6 @@ class WeatherMovies extends React.Component {
       .get(weatherUrl)
       .then((data) => {
         this.setState({ locData: data.data, err: "" });
-        console.log(this.state.locData);
       })
       .catch((err) => {
         this.setState({ err: "City not found" });
@@ -34,14 +33,12 @@ class WeatherMovies extends React.Component {
     // movies request
     axios.get(moviesUrl).then((data) => {
       this.setState({ moviesData: data.data, err: "" });
-      console.log(this.state.moviesData);
     });
   };
 
   render() {
     return (
       <div className="weather2">
-
         <Form onSubmit={this.getInfo}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Weather and movies API - lab08</Form.Label>
@@ -59,7 +56,6 @@ class WeatherMovies extends React.Component {
         <WeatherDay err={this.state.err} locData={this.state.locData} />
 
         <Movie moviesData={this.state.moviesData} />
-
       </div>
     );
   }
